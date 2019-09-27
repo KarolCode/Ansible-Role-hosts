@@ -1,0 +1,7 @@
+---
+hosts_restore: False
+hosts_group: []
+hosts_name: ""
+hosts_fetch_name: "inventory_hostname"
+hosts_fetch_address: "ansible_host"
+hosts_domain: ''

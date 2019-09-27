@@ -1,0 +1,32 @@
+---
+
+- name: Checked if the original hosts file exists.
+  stat:
+    path: /etc/hosts_original
+  register: hosts_file_exists
+
+- name: The original hosts file has been copied.
+  copy:
+    src: /etc/hosts
+    dest: /etc/hosts_original
+    mode: 0400
+    remote_src: yes
+  when: hosts_file_exists.stat.exists == False
+
+- name: The original hosts file has been restored.
+  copy:
+    src: /etc/hosts_original
+    dest: /etc/hosts
+    mode: 0400
+    remote_src: yes
+  when: (hosts_restore == True) and (hosts_file_exists.stat.exists == True)
+
+- name: The hosts file has been generated.
+  become: true
+  blockinfile:
+    marker: "# {mark}: ANSIBLE MANAGED BLOCK by hosts ansible role, which contains the block name: \'{{ hosts_name }}\'"
+    path: /etc/hosts
+    content: "{{ lookup('template', 'templates/hosts.j2') }}"
+    state: present
+  when:
+    hosts_group | length

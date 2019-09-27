@@ -1,0 +1,31 @@
+---
+
+galaxy_info:
+  role_name: hosts
+  author: Karol Kaliszczak
+  description: The role responsible for generated /etc/hosts file with IP address.
+  license: MIT
+  min_ansible_version: 2.7
+  github_branch: master
+
+  platforms:
+   - name: Ubuntu
+     versions:
+      - all
+
+   - name: Debian
+     versions:
+      - all
+
+   - name: CentOS
+     versions:
+     - all
+     - all
+
+   - name: Fedora
+     versions:
+      - all
+
+  galaxy_tags: []
+
+dependencies: []

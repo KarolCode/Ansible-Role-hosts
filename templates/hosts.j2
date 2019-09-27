@@ -1,0 +1,3 @@
+{% for hosts_item in hosts_group %}
+{{ hostvars[hosts_item][hosts_fetch_address] }}{{ "\t" }}{{ hostvars[hosts_item][hosts_fetch_name] }}{{ hosts_domain }}
+{% endfor %}
