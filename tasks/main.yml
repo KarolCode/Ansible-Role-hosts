@@ -24,7 +24,7 @@
 - name: The hosts file has been generated.
   become: true
   blockinfile:
-    marker: "# {mark}: ANSIBLE MANAGED BLOCK by hosts ansible role, which contains the block name: \'{{ hosts_name }}\'"
+    marker: "# {mark}: ANSIBLE MANAGED BLOCK by hosts ansible role, which contains the block name: {{ hosts_name }}"
     path: /etc/hosts
     content: "{{ lookup('template', 'templates/hosts.j2') }}"
     state: present
